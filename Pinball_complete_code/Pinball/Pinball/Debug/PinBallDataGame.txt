@@ -1,0 +1,19 @@
+9
+gameWidth 700
+gameHight 750
+ballRadius 10 
+xInitialPosition yInitailPosition 150 20
+xInitialVelocity yInitialVelocity -500 0 
+FlipperMajorRadius 10
+FlipperMinorRadius 5
+FlipperLength 50
+Pumber 250 60 50.
+Pumber 350 200 50.
+Pumber 450 60 50.
+Kicker 400 600 600 400 550 550
+Kikcer 100 400 300 600 150 150
+Wall 1
+Wall 700
+Ceiling 5
+Collectables 50 50
+speedBooster 200 300 50
