@@ -1,0 +1,30 @@
+19
+gameWidth 700
+gameHight 750
+ballRadius 10 
+xInitialPosition yInitailPosition 150 20
+xInitialVelocity yInitialVelocity -200 0 
+FlipperMajorRadius 10
+FlipperMinorRadius 5
+FlipperLength 50
+FlipperDisatance 5
+POP_BUMPER 250 100 40.
+VIBRANIUM_BUMPER 350 220 40.
+THRUST_BUMPER 450 100 40. 2.
+Kicker 420 645 600 400 550 560
+Kicker 100 400 280 645 150 560
+Wall 1
+Wall 700
+Ceiling 0
+Collectables 75 300
+speedBooster 100 150 20
+speedBooster 175 250 20
+speedBooster 600 150 20
+speedBooster 525 250 20
+Lanes 400 600 450 600 480 620  470 630
+Bullseyes 150 200 20
+scoremultipliers 400 400 10
+
+
+
+

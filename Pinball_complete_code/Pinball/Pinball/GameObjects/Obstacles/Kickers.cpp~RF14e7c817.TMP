@@ -1,0 +1,62 @@
+#include "Kickers.h"
+Kickers::Kickers(Vector2D p1, Vector2D p2 , Vector2D p3) {
+	P1 = p1;
+	P2 = p2;
+	P3 = p3;
+	CollidedLastframe = false;
+}
+void Kickers::draw(Interface& interface) {
+	interface.drawKickers(P1, P2 , P3);
+};
+/*Vector2D Kickers::collideWith(Ball& ball, float collisionTime)
+{
+    int slope = (P1.y - P2.y) / (P1.x - P2.x);
+    float theta = atan(slope);
+    float a = 1 / slope ;
+    float b = P1.y - (P1.x)/slope;
+   
+    
+    if (!CollidedLastframe && (ball.getCenter().x - P1.x) * ((P1.y - P2.y) / (P1.x - P2.x)) <= (ball.getCenter().y - P1.y) + ball.getRadius() && (ball.getCenter().x - P1.x) *((P1.y - P2.y) / (P1.x - P2.x)) >= (ball.getCenter().y - P1.y) + ball.getRadius() -30 && ball.getCenter().x > P1.x && ball.getCenter().x < P2.x )
+    {
+        Vector2D vector = { ball.getCenter().x - P3.x , ball.getCenter().y - P3.y };
+        if (vector.x * ball.getVelocity().x + vector.y * ball.getVelocity().y < 0){
+        CollidedLastframe = true;
+       // return Vector2D{ -2 * ball.getVelocity().x , -2 * ball.getVelocity().y } / collisionTime;
+       // return Vector2D{ (ball.getVelocity().x * sin(theta) - ball.getVelocity().y * cos(theta) - ball.getVelocity().x),(ball.getVelocity().x * cos(theta) - ball.getVelocity().y * sin(theta) - ball.getVelocity().y) } / (collisionTime);
+          //return Vector2D{ ball.getVelocity().x * sin(theta) - ball.getVelocity().y * cos(theta) - ball.getVelocity().x, ball.getVelocity().x * cos(theta) - ball.getVelocity().y * sin(theta) - ball.getVelocity().y } / collisionTime;
+        //  return Vector2D{ (ball.getVelocity().x * (1 - a * a) / (1 + a * a) + (ball.getVelocity().y - b) * 2 * a / (a * a + 1))   ,   (ball.getVelocity().x * 2 * a / (a * a + 1) + (ball.getVelocity().y - b) * (a * a - 1) / (a * a + 1) + b) };
+        return Vector2D{ (ball.getVelocity().x * sin(theta) - ball.getVelocity().y * cos(theta) - ball.getVelocity().x),(ball.getVelocity().x * cos(theta) - ball.getVelocity().y * sin(theta) - ball.getVelocity().y) } / (collisionTime); // yes yes
+
+        }
+        else {
+            CollidedLastframe = false;
+            return Vector2D{ 0, 0 };
+        }
+    }
+    else
+    {
+        CollidedLastframe = false;
+        return Vector2D{ 0, 0 };
+    }
+};*/
+Vector2D Kickers::collideWith(Ball& ball, float collisionTime)
+{
+    int slope1 = (P1.y - P2.y) / (P1.x - P2.x);
+    theta1 = atan(slope1) ;
+    float theta2 = atan(ball.getVelocity().y / ball.getVelocity().x) - theta1;
+    float magnitude = sqrt((ball.getVelocity().y) * (ball.getVelocity().y) + (ball.getVelocity().x) * (ball.getVelocity().x));
+
+    if (!CollidedLastframe && (ball.getCenter().x - P1.x) * ((P1.y - P2.y) / (P1.x - P2.x)) <= (ball.getCenter().y - P1.y) && (ball.getCenter().x - P1.x) * ((P1.y - P2.y) / (P1.x - P2.x)) + 10 >= (ball.getCenter().y - P1.y) && ball.getCenter().x > P1.x && ball.getCenter().x < P2.x)
+         {
+             CollidedLastframe = true;
+             return Vector2D{ magnitude * cos(theta1 - theta2) - ball.getVelocity().x , magnitude * sin(theta1 - theta2) - ball.getVelocity().y } / collisionTime;
+
+            }
+
+    else
+    {
+        CollidedLastframe = false;
+        return Vector2D{ 0, 0 };
+    }
+}
+
